@@ -1,7 +1,7 @@
 <?php
 include("env.php");
 
-$query = $conn->query("SELECT * FROM inventario");
+$query = $conn->query("SELECT * FROM usuarios");
 
 $usuarios = [];
 
