@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2025 a las 00:44:15
+-- Tiempo de generación: 01-11-2025 a las 21:46:36
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -165,7 +165,7 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `registration_day` datetime DEFAULT current_timestamp(),
-  `biograpy` text DEFAULT NULL,
+  `biography` text DEFAULT NULL,
   `role` enum('user','admin') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -173,7 +173,7 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `username`, `email`, `password`, `registration_day`, `biograpy`, `role`) VALUES
+INSERT INTO `usuarios` (`id`, `username`, `email`, `password`, `registration_day`, `biography`, `role`) VALUES
 (1, 'cris', 'crisabuhadba@gmail.com', 'cris123', '2025-10-31 20:29:10', 'Me gusta la sopa', 'admin'),
 (2, 'fulano', 'fulano@gmail.com', 'fulano', '2025-10-31 20:32:11', 'ola', 'user'),
 (3, 'stephen king', 'stephen@gmail.com', 'stephen23', '2025-10-31 20:32:11', 'prolífico autor estadounidense de terror y otros géneros, nacido en Portland, Maine, el 21 de septiembre de 1947. Tras una infancia con dificultades y diversos trabajos, logró el éxito con su primera novela, Carrie, en 1974.', 'user');
