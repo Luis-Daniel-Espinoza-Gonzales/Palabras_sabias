@@ -2,58 +2,53 @@ package com.example.palabras_sabias.sampledata
 
 import android.app.Application
 import android.util.Log
-import androidx.compose.foundation.layout.add
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
 import com.android.volley.Request
+import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
+import org.json.JSONArray
 
 class FraseViewModel(application: Application) : AndroidViewModel(application) {
 
-    // Estado que la UI de Compose puede observar.
-    // Inicialmente, la lista de frases está vacía.
     val frases = mutableStateOf<List<Frase>>(emptyList())
     val mensajeError = mutableStateOf<String?>(null)
 
     init {
-        // Al iniciar el ViewModel, cargamos las frases.
         cargarFrases()
     }
 
     private fun cargarFrases() {
         val context = getApplication<Application>().applicationContext
-        val queue = com.android.volley.toolbox.Volley.newRequestQueue(context)
-        val url = "http://10.0.2.2/Palabras_sabias/obtener_usuarios.php" // URL de tu API
+        val queue = Volley.newRequestQueue(context)
 
-        val jsonArrayRequest = com.android.volley.toolbox.JsonArrayRequest(
+        // URL configurada con la IP de tu PC para que el celular pueda conectarse.
+        // Tu PC y tu celular DEBEN estar conectados a la misma red Wi-Fi.
+        val url = "http://192.168.0.10/palabras_sabias/Servidor_web/obtener_usuarios.php"
+
+        val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
-            { response ->
+            { response: JSONArray ->
                 try {
-                    // Usamos Gson para convertir la respuesta JSON en una lista de objetos Frase.
-                    // Esto es más limpio que parsear el JSON manualmente.
                     val gson = Gson()
                     val listaFrases = gson.fromJson(response.toString(), Array<Frase>::class.java).toList()
-
-                    // Actualizamos el estado con la nueva lista.
                     frases.value = listaFrases
                     mensajeError.value = null
                     Log.d("FraseViewModel", "Frases cargadas: ${listaFrases.size}")
-
                 } catch (e: Exception) {
                     mensajeError.value = "Error al procesar la respuesta."
-                    Log.e("FraseViewModel", "Error de parseo: ${e.message}")
+                    Log.e("FraseViewModel", "Error de parseo", e)
                 }
             },
-            { error ->
-                // Este bloque se ejecuta si hay un error en la red.
-                mensajeError.value = "Error de red: ${error.message}"
-                Log.e("FraseViewModel", "Error de Volley: ${error.message}")
+            { error: VolleyError ->
+                val errorMessage = error.message ?: "Error desconocido"
+                mensajeError.value = "Error de red: $errorMessage"
+                Log.e("FraseViewModel", "Error de Volley", error)
             }
         )
 
-        // Añadir la petición a la cola para que se ejecute.
         queue.add(jsonArrayRequest)
     }
 }
