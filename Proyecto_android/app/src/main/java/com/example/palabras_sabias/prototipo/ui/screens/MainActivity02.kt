@@ -24,10 +24,10 @@ class MainActivity02 : ComponentActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, mutableListOf<String>())
         list.adapter = adapter
 
-        // Observar los cambios en los usuarios
+        // Observa los cambios en los usuarios
         viewModel.usuarios.observe(this) { lista_usuarios ->
             adapter.clear()
-            adapter.addAll(lista_usuarios.map { it.username })
+            adapter.addAll(lista_usuarios.map { "${it.username} - ${it.email} - ${it.registration_day}" })
             adapter.notifyDataSetChanged()
         }
 
