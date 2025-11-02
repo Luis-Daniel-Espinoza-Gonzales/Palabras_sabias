@@ -1,4 +1,4 @@
-package com.example.palabras_sabias.sampledata
+/*package com.example.palabras_sabias.sampledata
 
 import android.app.Application
 import android.util.Log
@@ -52,3 +52,4 @@ class FraseViewModel(application: Application) : AndroidViewModel(application) {
         queue.add(jsonArrayRequest)
     }
 }
+*/

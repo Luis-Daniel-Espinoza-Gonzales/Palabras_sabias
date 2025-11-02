@@ -1,4 +1,4 @@
-package com.example.palabras_sabias.sampledata
+/*package com.example.palabras_sabias.sampledata
 
 import com.google.gson.annotations.SerializedName
 
@@ -14,4 +14,4 @@ data class Frase(
     @SerializedName("biograpy")
     val biography: String,
     val role: String
-)
+)*/

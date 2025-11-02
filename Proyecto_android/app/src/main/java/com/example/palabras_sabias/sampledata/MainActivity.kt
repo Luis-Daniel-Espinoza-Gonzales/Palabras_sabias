@@ -1,4 +1,4 @@
-package com.example.palabras_sabias
+/*package com.example.palabras_sabias.sampledata
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -25,8 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
-import com.example.palabras_sabias.sampledata.Frase
-import com.example.palabras_sabias.sampledata.FraseViewModel
 import com.example.palabras_sabias.ui.theme.Palabras_sabiasTheme
 
 class MainActivity : ComponentActivity() {
@@ -104,3 +102,4 @@ fun FraseCard(frase: Frase) {
         }
     }
 }
+*/
