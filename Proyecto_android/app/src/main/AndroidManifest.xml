@@ -15,16 +15,21 @@
         android:theme="@style/Theme.Palabras_sabias"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".prototipo.ui.screens.MainActivity02"
+            android:name=".prototipo.ui.screens.RegisterActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Palabras_sabias"
             tools:ignore="RedundantLabel">
+
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>
