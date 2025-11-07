@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Palabras_sabias" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Palabras_sabias" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#FF0000</item>
+        <item name="colorPrimaryDark">#B00000</item>
+        <item name="colorAccent">#FF4444</item>
+    </style>
+
 </resources>

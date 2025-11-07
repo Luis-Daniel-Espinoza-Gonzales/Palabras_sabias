@@ -29,7 +29,7 @@ class RegisterActivity : ComponentActivity() {
             }
 
             val queue = Volley.newRequestQueue(this)
-            val url = "http://10.220.125.210/palabras_sabias/Servidor_web/registrar_usuario.php"
+            val url = "http://192.168.1.46/palabras_sabias/Servidor_web/registrar_usuario.php"
 
             val stringRequest = object : StringRequest(
                 Request.Method.POST, url,

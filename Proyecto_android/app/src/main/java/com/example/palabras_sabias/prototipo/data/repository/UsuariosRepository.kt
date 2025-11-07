@@ -20,7 +20,7 @@ class UsuariosRepository (private val context: Context)  {
         onError: (String) -> Unit
     ) {
         val queue = Volley.newRequestQueue(context)
-        val url = "http://10.220.125.210/palabras_sabias/Servidor_web/obtener_usuarios.php"
+        val url = "http://192.168.1.46/palabras_sabias/Servidor_web/obtener_usuarios.php"
 
         val jsonArrayRequest = JsonArrayRequest(
             Request.Method.GET, url, null,
@@ -46,7 +46,7 @@ class UsuariosRepository (private val context: Context)  {
         onError: (String) -> Unit
     ) {
         val queue = Volley.newRequestQueue(context)
-        val url = "http://192.168.0.10/palabras_sabias/Servidor_web/verificar_usuario.php"
+        val url = "http://192.168.1.46/palabras_sabias/Servidor_web/verificar_usuario.php"
 
         val stringRequest = object : StringRequest(
             Method.POST, url,

@@ -3,4 +3,7 @@
     <string name="password">Password</string>
     <string name="name">Name</string>
     <string name="login">Login</string>
+
+    <string name="navigation_drawer_open">Abrir menú</string>
+    <string name="navigation_drawer_close">Cerrar menú</string>
 </resources>
