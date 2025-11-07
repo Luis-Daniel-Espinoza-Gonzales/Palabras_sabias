@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Palabras_sabias"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".prototipo.ui.screens.RegisterActivity"
+            android:name=".prototipo.ui.screens.LoginActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Palabras_sabias"
