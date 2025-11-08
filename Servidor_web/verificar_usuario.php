@@ -28,6 +28,7 @@ if ($resultado->num_rows > 0) {
             "user" => [
                 "id" => $row['id'],
                 "username" => $row['username'],
+                "email" => $row['email'],
                 "registration_day" => $row['registration_day'],
                 "biography" => $row['biography'],
                 "role" => $row['role']

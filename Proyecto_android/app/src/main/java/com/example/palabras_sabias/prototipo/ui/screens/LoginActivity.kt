@@ -46,12 +46,12 @@ class LoginActivity : ComponentActivity() {
             usuario?.let {
                 Toast.makeText(this, "¡Bienvenido, ${it.username}!", Toast.LENGTH_LONG).show()
 
-                /*
-                // Aquí iría la lógica para navegar a la siguiente pantalla, por ejemplo MainActivity02
-                val intent = Intent(this, MainActivity02::class.java)
+                // Navegar a ProfileActivity
+                val intent = Intent(this, ProfileActivity::class.java)
+                // Opcional, pero recomendado: Pasa los datos del usuario a la siguiente actividad
+                intent.putExtra("USER_DATA", it)
                 startActivity(intent)
                 finish() // Cierra LoginActivity para que el usuario no pueda volver con el botón de atrás
-                */
             }
         }
 
