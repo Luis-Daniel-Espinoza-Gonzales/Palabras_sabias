@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Contenedor para el nombre de usuario -->
+    <item
+        android:id="@+id/action_username_display"
+        android:title="Nombre de Usuario"
+        android:enabled="false" />
+
+    <item
+        android:id="@+id/action_view_channel"
+        android:title="Ver tu canal" />
+
+    <item
+        android:id="@+id/action_change_account"
+        android:title="Cambiar de cuenta"
+        android:enabled="false" />
+
+    <item
+        android:id="@+id/action_logout"
+        android:title="Cerrar Sesión" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="Configuración"
+        android:enabled="false" />
+
+    <item
+        android:id="@+id/action_send_suggestion"
+        android:title="Enviar sugerencia"
+        android:enabled="false" />
+
+</menu>

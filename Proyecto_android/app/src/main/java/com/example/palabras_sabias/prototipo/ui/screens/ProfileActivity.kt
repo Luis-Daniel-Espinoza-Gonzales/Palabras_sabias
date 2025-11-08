@@ -11,7 +11,8 @@ class ProfileActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        layoutInflater.inflate(R.layout.activity_profile, findViewById(R.id.content_frame))
+        // Infla el layout del perfil y lo añade al FrameLayout de la BaseActivity
+        layoutInflater.inflate(R.layout.activity_profile, findViewById(R.id.content_frame), true)
 
         val usernameTextView = findViewById<TextView>(R.id.username_textview)
         val biographyTextView = findViewById<TextView>(R.id.biography_textview)
