@@ -1,5 +1,6 @@
 package com.example.palabras_sabias.prototipo.ui.screens
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.activity.ComponentActivity
@@ -35,6 +36,11 @@ class RegisterActivity : ComponentActivity() {
                 Request.Method.POST, url,
                 { response ->
                     Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
+
+
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish() // Cierra el register para que no vuelva al presionar atrás
                 },
                 { error ->
                     Toast.makeText(this, "Error en el registro", Toast.LENGTH_SHORT).show()
