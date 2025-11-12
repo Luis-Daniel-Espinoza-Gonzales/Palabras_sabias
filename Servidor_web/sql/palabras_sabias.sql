@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2025 a las 15:29:40
+-- Tiempo de generación: 12-11-2025 a las 20:06:28
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -65,6 +65,28 @@ CREATE TABLE `eventos` (
 INSERT INTO `eventos` (`id`, `titulo`, `fecha_evento`, `ubicacion`, `descripcion`, `organizador`, `fecha_creacion`) VALUES
 (1, 'Feria de libro', '2025-11-11 20:41:18', 'Mar de plata', 'Comparte experiencia unica junto con otros amantes de la literatura', 2, '2025-10-31 20:41:18'),
 (2, 'Comic-Con Argentina', '2025-12-05 11:06:25', 'Av. Costanera Rafael Obligado 1221, C1425 Cdad. Autónoma de Buenos Aires', '¡Atención, amantes de la cultura pop! En el mes de diciembre llega Argentina Comic-Con 2025. Preparate para sumergirte en un mundo lleno de fantasía, cine, series, cosplay, cómics, música, gaming, celebridades internacionales y mucho más.\r\n\r\n¡Reservá la fecha! La convención tendrá lugar los días 5, 6, y 7 de DICIEMBRE en el Centro Costa Salguero. Será un fin de semana lleno de emociones, encuentros con tus ídolos, paneles fascinantes y la oportunidad de explorar los universos de tus franquicias favoritas.', 2, '2013-12-05 11:06:06');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `favoritos`
+--
+
+CREATE TABLE `favoritos` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_obra` int(11) NOT NULL,
+  `fecha_agregado` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `favoritos`
+--
+
+INSERT INTO `favoritos` (`id`, `id_usuario`, `id_obra`, `fecha_agregado`) VALUES
+(1, 2, 1, '2025-11-12 19:05:07'),
+(2, 2, 2, '2025-11-12 19:05:07'),
+(3, 2, 3, '2025-11-12 19:05:43');
 
 -- --------------------------------------------------------
 
@@ -230,6 +252,14 @@ ALTER TABLE `eventos`
   ADD KEY `organizador` (`organizador`);
 
 --
+-- Indices de la tabla `favoritos`
+--
+ALTER TABLE `favoritos`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uk_favoritos_unico` (`id_usuario`,`id_obra`),
+  ADD KEY `id_obra` (`id_obra`);
+
+--
 -- Indices de la tabla `formatos`
 --
 ALTER TABLE `formatos`
@@ -269,6 +299,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `favoritos`
+--
+ALTER TABLE `favoritos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -290,6 +326,13 @@ ALTER TABLE `comentarios`
 --
 ALTER TABLE `eventos`
   ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`organizador`) REFERENCES `usuarios` (`id`);
+
+--
+-- Filtros para la tabla `favoritos`
+--
+ALTER TABLE `favoritos`
+  ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`id_obra`) REFERENCES `obras` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `obras`
