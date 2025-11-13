@@ -2,22 +2,26 @@
 include("env.php");
 
 //Recibe datos del cliente (Android)
-$id_usuario = $_POST['id'] ?? '';
+$id_usuario = (int)$_POST['id_usuario'] ?? '';
 
 //
 $query = $conn->prepare("SELECT 
-     fav.id as id_favorito,
+     fav.id,
      fav.fecha_agregado,
-     o.id,
+     o.id AS id_obra,
      o.title,
      o.synopsis,
-     o.id_autor,
-     o.id_genero,
-     o.id_formato,
+     autores.username AS autor,
+     generos.name AS genero,
+     formatos.nombre AS formato,
      o.fecha_publicacion
-    FROM favoritos AS fav JOIN obras AS o ON fav.id_obra = o.id 
+    FROM favoritos AS fav 
+	JOIN obras AS o ON fav.id_obra = o.id 
+	JOIN usuarios AS autores ON o.id_autor = autores.id
+	JOIN generos ON o.id_genero = generos.id
+	JOIN formatos ON o.id_formato = formatos.id
     WHERE fav.id_usuario = ?
-    ORDER BY fav.fecha_agregado DESC");
+    ORDER BY fav.fecha_agregado DESC;");
 
 //Busca los favoritos del usuario
 $query->bind_param("i", $id_usuario);

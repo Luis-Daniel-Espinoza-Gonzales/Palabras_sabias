@@ -7,51 +7,25 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.palabras_sabias.prototipo.data.model.Favoritos
 import com.example.palabras_sabias.prototipo.data.model.Usuario
-import com.example.palabras_sabias.prototipo.data.model.Usuarios
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import org.json.JSONObject
 
-class UsuariosRepository (private val context: Context) {
+class FavoritosRepository (private val context: Context) {
 
-    fun cargar_usuarios(
-        onSuccess: (List<Usuarios>) -> Unit,
+    fun cargar_favoritos(
+        id_usuario: Int,
+        onSuccess: (List<Favoritos>) -> Unit,
         onError: (String) -> Unit
     ) {
         val queue = Volley.newRequestQueue(context)
-        val url = "http://192.168.1.46/palabras_sabias/Servidor_web/obtener_usuarios.php"
-
-        val jsonArrayRequest = JsonArrayRequest(
-            Request.Method.GET, url, null,
-            { response ->
-                try {
-                    val lista_usuarios = Gson().fromJson(response.toString(), Array<Usuarios>::class.java).toList()
-                    onSuccess(lista_usuarios)
-                } catch (e: Exception) {
-                    onError("Error al procesar la respuesta del servidor")
-                }
-            },
-            { error ->
-                onError(error.message ?: "Error de red desconocido")
-            }
-        )
-        queue.add(jsonArrayRequest)
-    }
-
-    fun verificar_usuario(
-        email: String,
-        password: String,
-        onSuccess: (Usuario) -> Unit, // Esperamos un único usuario
-        onError: (String) -> Unit
-    ) {
-        val queue = Volley.newRequestQueue(context)
-        val url = "http://10.199.170.168/palabras_sabias/Servidor_web/verificar_usuario.php"
+        val url = "http://192.168.1.46/palabras_sabias/Servidor_web/obtener_favoritos.php"
 
         val stringRequest = object : StringRequest(
             Method.POST, url,
             Response.Listener<String> { response ->
-                Log.d("Respuesta Login", "Respuesta del servidor: $response")
                 try {
                     // 1. Convertimos la respuesta en un objeto JSON genérico
                     val jsonObject = JSONObject(response)
@@ -59,10 +33,10 @@ class UsuariosRepository (private val context: Context) {
 
                     // 2. Comprobamos el estado
                     if (status == "success") {
-                        // 3. Si es éxito, extraemos el objeto "user" y lo convertimos a nuestra clase Usuario
-                        val userObject = jsonObject.getJSONObject("user").toString()
-                        val usuario = Gson().fromJson(userObject, Usuario::class.java)
-                        onSuccess(usuario) // ¡Éxito!
+                        // 3. Si es éxito, extraemos el objeto "favorites" y lo convertimos a nuestra clase Favorito
+                        val favoritesObject = jsonObject.getJSONObject("favorites").toString()
+                        val lista_favoritos = Gson().fromJson(favoritesObject, Array<Favoritos>::class.java).toList()
+                        onSuccess(lista_favoritos) // ¡Éxito!
                     } else {
                         // 4. Si el estado es "error", obtenemos el mensaje y lo pasamos al callback de error
                         val message = jsonObject.getString("message")
@@ -70,7 +44,7 @@ class UsuariosRepository (private val context: Context) {
                     }
                 } catch (e: Exception) {
                     // Esto ocurre si la respuesta no es un JSON válido
-                    Log.e("LoginError", "Error al parsear JSON: ${e.message}")
+                    Log.e("ConsultaError", "Error al parsear JSON: ${e.message}")
                     onError("Respuesta inesperada del servidor")
                 }
             },
@@ -80,8 +54,7 @@ class UsuariosRepository (private val context: Context) {
         ) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
-                params["email"] = email
-                params["password"] = password
+                params["id_usuario"] = id_usuario.toString()
                 return params
             }
         }
@@ -89,4 +62,3 @@ class UsuariosRepository (private val context: Context) {
         queue.add(stringRequest)
     }
 }
-

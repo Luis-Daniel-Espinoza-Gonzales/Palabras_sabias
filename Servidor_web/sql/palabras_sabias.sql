@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-11-2025 a las 13:46:12
+-- Tiempo de generación: 12-11-2025 a las 20:06:28
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -73,9 +73,20 @@ INSERT INTO `eventos` (`id`, `titulo`, `fecha_evento`, `ubicacion`, `descripcion
 --
 
 CREATE TABLE `favoritos` (
+  `id` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `id_obra` int(11) NOT NULL
+  `id_obra` int(11) NOT NULL,
+  `fecha_agregado` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `favoritos`
+--
+
+INSERT INTO `favoritos` (`id`, `id_usuario`, `id_obra`, `fecha_agregado`) VALUES
+(1, 2, 1, '2025-11-12 19:05:07'),
+(2, 2, 2, '2025-11-12 19:05:07'),
+(3, 2, 3, '2025-11-12 19:05:43');
 
 -- --------------------------------------------------------
 
@@ -147,28 +158,28 @@ CREATE TABLE `obras` (
 --
 
 INSERT INTO `obras` (`id`, `title`, `synopsis`, `id_autor`, `id_genero`, `id_formato`, `fecha_Publicacion`, `promedio_puntaje`) VALUES
-(1, 'Mr Mercedes', 'Mr. Mercedes es la historia de una guerra entre el Bien y el Mal. Un retrato inolvidable de la mente de un asesino obsesionado y demente.De Stephen King, maestro del terror y el suspenso.', 3, 3, 2, '2015-10-15 20:33:53', 9.50),
-(2, 'La suiza', 'Historias de la suiza', 2, 3, 2, '2025-10-15 20:33:53', 7.80),
-(3, 'It', 'Una entidad maligna que adopta la forma de un payaso aterroriza a un pueblo.', 3, 6, 2, '1986-09-15 00:00:00', 9.80),
-(4, 'El Resplandor', 'Un hotel aislado y fuerzas malignas que enloquecen a un hombre.', 3, 6, 2, '1977-01-28 00:00:00', 9.40),
-(5, 'Carrie', 'Una joven con poderes psíquicos toma venganza tras años de abuso.', 3, 6, 2, '1974-04-05 00:00:00', 8.90),
-(6, 'Misery', 'Un escritor secuestrado por su fan número uno.', 3, 6, 2, '1987-06-08 00:00:00', 9.10),
-(7, 'Cementerio de Mascotas', 'Un cementerio capaz de devolver la vida, con consecuencias horribles.', 3, 6, 2, '1983-11-14 00:00:00', 8.70),
-(8, 'Frankenstein', 'Un científico crea un ser vivo que terminará atormentándolo.', 4, 6, 2, '1818-01-01 00:00:00', 9.60),
-(9, 'Valperga', 'Novela histórica sobre el ascenso y caída de Castruccio Castracani.', 4, 7, 2, '1823-01-01 00:00:00', 8.20),
-(10, 'El último hombre', 'Una plaga destruye a la humanidad, narrada por el último sobreviviente.', 4, 5, 2, '1826-01-01 00:00:00', 8.50),
-(11, 'Mathilda', 'Historia trágica de amor obsesivo entre padre e hija.', 4, 3, 2, '1959-01-01 00:00:00', 7.40),
-(12, 'Lodore', 'Drama social sobre la vida familiar y las convenciones sociales.', 4, 3, 2, '1835-01-01 00:00:00', 7.10),
-(13, 'El Eternauta', 'Una invasión alienígena bajo una nevada mortal en Buenos Aires.', 5, 8, 1, '1957-09-04 00:00:00', 9.90),
-(14, 'Mort Cinder', 'Un inmortal que revive en distintos periodos históricos.', 5, 8, 1, '1962-01-20 00:00:00', 9.30),
-(15, 'Sargento Kirk', 'Un soldado que defiende a los pueblos originarios del abuso militar.', 5, 2, 1, '1953-01-01 00:00:00', 8.60),
-(16, 'Ernie Pike', 'Relatos humanos situados en la Segunda Guerra Mundial.', 5, 2, 1, '1957-01-01 00:00:00', 8.10),
-(17, 'El Indio Suárez', 'Aventuras en la frontera argentina con enfoque social.', 5, 2, 1, '1955-01-01 00:00:00', 7.90),
-(18, 'El Hobbit', 'La aventura de Bilbo Bolsón para recuperar un tesoro custodiado por un dragón.', 6, 1, 2, '1937-09-21 00:00:00', 9.70),
-(19, 'El Señor de los Anillos: La Comunidad del Anillo', 'Comienza la travesía para destruir el anillo único.', 6, 1, 2, '1954-07-29 00:00:00', 9.85),
-(20, 'El Señor de los Anillos: Las Dos Torres', 'La comunidad se divide y la guerra se intensifica.', 6, 1, 2, '1954-11-11 00:00:00', 9.80),
-(21, 'El Señor de los Anillos: El Retorno del Rey', 'La batalla final por la Tierra Media.', 6, 1, 2, '1955-10-20 00:00:00', 9.95),
-(22, 'El Silmarillion', 'El origen del universo de la Tierra Media y sus primeras edades.', 6, 1, 2, '1977-09-15 00:00:00', 9.40);
+(1, 'Mr Mercedes', 'Mr. Mercedes es la historia de una guerra entre el Bien y el Mal. Un retrato inolvidable de la mente de un asesino obsesionado y demente.De Stephen King, maestro del terror y el suspenso.', 3, 3, 2, '2015-10-15 20:33:53', 0.00),
+(2, 'La suiza', 'Historias de la suiza', 2, 3, 2, '2025-10-15 20:33:53', 0.00),
+(3, 'It', 'Una entidad maligna que adopta la forma de un payaso aterroriza a un pueblo.', 3, 6, 2, '1986-09-15 00:00:00', 0.00),
+(4, 'El Resplandor', 'Un hotel aislado y fuerzas malignas que enloquecen a un hombre.', 3, 6, 2, '1977-01-28 00:00:00', 0.00),
+(5, 'Carrie', 'Una joven con poderes psíquicos toma venganza tras años de abuso.', 3, 6, 2, '1974-04-05 00:00:00', 0.00),
+(6, 'Misery', 'Un escritor secuestrado por su fan número uno.', 3, 6, 2, '1987-06-08 00:00:00', 0.00),
+(7, 'Cementerio de Mascotas', 'Un cementerio capaz de devolver la vida, con consecuencias horribles.', 3, 6, 2, '1983-11-14 00:00:00', 0.00),
+(8, 'Frankenstein', 'Un científico crea un ser vivo que terminará atormentándolo.', 4, 6, 2, '1818-01-01 00:00:00', 0.00),
+(9, 'Valperga', 'Novela histórica sobre el ascenso y caída de Castruccio Castracani.', 4, 7, 2, '1823-01-01 00:00:00', 0.00),
+(10, 'El último hombre', 'Una plaga destruye a la humanidad, narrada por el último sobreviviente.', 4, 5, 2, '1826-01-01 00:00:00', 0.00),
+(11, 'Mathilda', 'Historia trágica de amor obsesivo entre padre e hija.', 4, 3, 2, '1959-01-01 00:00:00', 0.00),
+(12, 'Lodore', 'Drama social sobre la vida familiar y las convenciones sociales.', 4, 3, 2, '1835-01-01 00:00:00', 0.00),
+(13, 'El Eternauta', 'Una invasión alienígena bajo una nevada mortal en Buenos Aires.', 5, 8, 1, '1957-09-04 00:00:00', 0.00),
+(14, 'Mort Cinder', 'Un inmortal que revive en distintos periodos históricos.', 5, 8, 1, '1962-01-20 00:00:00', 0.00),
+(15, 'Sargento Kirk', 'Un soldado que defiende a los pueblos originarios del abuso militar.', 5, 2, 1, '1953-01-01 00:00:00', 0.00),
+(16, 'Ernie Pike', 'Relatos humanos situados en la Segunda Guerra Mundial.', 5, 2, 1, '1957-01-01 00:00:00', 0.00),
+(17, 'El Indio Suárez', 'Aventuras en la frontera argentina con enfoque social.', 5, 2, 1, '1955-01-01 00:00:00', 0.00),
+(18, 'El Hobbit', 'La aventura de Bilbo Bolsón para recuperar un tesoro custodiado por un dragón.', 6, 1, 2, '1937-09-21 00:00:00', 0.00),
+(19, 'El Señor de los Anillos: La Comunidad del Anillo', 'Comienza la travesía para destruir el anillo único.', 6, 1, 2, '1954-07-29 00:00:00', 0.00),
+(20, 'El Señor de los Anillos: Las Dos Torres', 'La comunidad se divide y la guerra se intensifica.', 6, 1, 2, '1954-11-11 00:00:00', 0.00),
+(21, 'El Señor de los Anillos: El Retorno del Rey', 'La batalla final por la Tierra Media.', 6, 1, 2, '1955-10-20 00:00:00', 0.00),
+(22, 'El Silmarillion', 'El origen del universo de la Tierra Media y sus primeras edades.', 6, 1, 2, '1977-09-15 00:00:00', 0.00);
 
 -- --------------------------------------------------------
 
@@ -244,8 +255,9 @@ ALTER TABLE `eventos`
 -- Indices de la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
-  ADD PRIMARY KEY (`id_usuario`,`id_obra`),
-  ADD KEY `favoritos_ibfk_2` (`id_obra`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uk_favoritos_unico` (`id_usuario`,`id_obra`),
+  ADD KEY `id_obra` (`id_obra`);
 
 --
 -- Indices de la tabla `formatos`
@@ -287,6 +299,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `favoritos`
+--
+ALTER TABLE `favoritos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -313,8 +331,8 @@ ALTER TABLE `eventos`
 -- Filtros para la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
-  ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`id_obra`) REFERENCES `obras` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`id_obra`) REFERENCES `obras` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `obras`
