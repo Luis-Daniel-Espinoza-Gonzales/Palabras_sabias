@@ -21,43 +21,41 @@ class LoginActivity : ComponentActivity() {
         val emailEditText = findViewById<EditText>(R.id.email_edit_text)
         val passwordEditText = findViewById<EditText>(R.id.password_edit_text)
         val loginButton = findViewById<Button>(R.id.login_button)
+        val registerButton = findViewById<Button>(R.id.register_button) // 🔹 NUEVO
 
-        //Configura los observadores para reaccionar a los resultados
         setupObservers()
 
-        //Configura el OnClickListener del botón
+        // Botón de Login
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                //Llama a la función del ViewModel para que inicie el proceso de login
                 viewModel.iniciar_sesion(email, password)
             } else {
                 Toast.makeText(this, "Por favor, introduce email y contraseña", Toast.LENGTH_SHORT).show()
             }
         }
+
+     
+        registerButton.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupObservers() {
-        // Observador para el resultado del login exitoso
         viewModel.usuarioLogueado.observe(this) { usuario ->
-            // Si el usuario no es nulo, el login fue exitoso
             usuario?.let {
                 Toast.makeText(this, "¡Bienvenido, ${it.username}!", Toast.LENGTH_LONG).show()
-
-                // Navegar a HomeActivity
                 val intent = Intent(this, HomeActivity::class.java)
-                // Opcional, pero recomendado: Pasa los datos del usuario a la siguiente actividad
                 intent.putExtra("USER_DATA", it)
                 startActivity(intent)
-                finish() // Cierra LoginActivity para que el usuario no pueda volver con el botón de atrás
+                finish()
             }
         }
 
-        // Observador para los mensajes de error
         viewModel.mensajeError.observe(this) { mensaje ->
-            // Si el mensaje no es nulo, mostramos el error
             mensaje?.let {
                 Toast.makeText(this, it, Toast.LENGTH_LONG).show()
             }
