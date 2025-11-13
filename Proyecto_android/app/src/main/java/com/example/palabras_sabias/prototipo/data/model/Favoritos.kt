@@ -4,8 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-
-class Favoritos (
+data class Favoritos (
     val id: Int,
     val fecha_agregado: String,
     val id_obra: Int,

@@ -21,7 +21,7 @@ class FavoritosRepository (private val context: Context) {
         onError: (String) -> Unit
     ) {
         val queue = Volley.newRequestQueue(context)
-        val url = "http://192.168.1.46/palabras_sabias/Servidor_web/obtener_favoritos.php"
+        val url = "http://192.168.0.10/palabras_sabias/Servidor_web/obtener_favoritos.php"
 
         val stringRequest = object : StringRequest(
             Method.POST, url,
