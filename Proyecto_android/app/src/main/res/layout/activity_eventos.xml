@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F3F3F3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tituloEventos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="📅 Próximos Eventos"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        android:gravity="center"
+        android:paddingBottom="8dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#6200EE"
+        android:layout_marginBottom="12dp" />
+
+
+    <ListView
+        android:id="@+id/listaEventos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#BDBDBD"
+        android:dividerHeight="1dp"
+        android:padding="8dp"
+        android:background="#F3F3F3"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="vertical" />
+
+</LinearLayout>
