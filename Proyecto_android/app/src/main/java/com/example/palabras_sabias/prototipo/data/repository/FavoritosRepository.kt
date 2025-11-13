@@ -4,11 +4,9 @@ import android.content.Context
 import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.palabras_sabias.prototipo.data.model.Favoritos
-import com.example.palabras_sabias.prototipo.data.model.Usuario
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import org.json.JSONObject
@@ -33,18 +31,17 @@ class FavoritosRepository (private val context: Context) {
 
                     // 2. Comprobamos el estado
                     if (status == "success") {
-                        // 3. Si es éxito, extraemos el objeto "favorites" y lo convertimos a nuestra clase Favorito
-                        val favoritesObject = jsonObject.getJSONObject("favorites").toString()
-                        val lista_favoritos = Gson().fromJson(favoritesObject, Array<Favoritos>::class.java).toList()
-                        onSuccess(lista_favoritos) // ¡Éxito!
+                        // 3. Si es éxito, extraemos el ARRAY "favorites" y lo convertimos
+                        val favoritesArray = jsonObject.getJSONArray("favorites").toString()
+                        val lista_favoritos = Gson().fromJson(favoritesArray, Array<Favoritos>::class.java).toList()
+                        onSuccess(lista_favoritos)
                     } else {
-                        // 4. Si el estado es "error", obtenemos el mensaje y lo pasamos al callback de error
+                        // 4. Si el estado es "error", obtenemos el mensaje
                         val message = jsonObject.getString("message")
                         onError(message)
                     }
                 } catch (e: Exception) {
-                    // Esto ocurre si la respuesta no es un JSON válido
-                    Log.e("ConsultaError", "Error al parsear JSON: ${e.message}")
+                    Log.e("FavoritosError", "Error al parsear JSON: ${e.message}")
                     onError("Respuesta inesperada del servidor")
                 }
             },

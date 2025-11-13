@@ -28,27 +28,19 @@ $query->bind_param("i", $id_usuario);
 $query->execute();
 $resultado = $query->get_result();
 
-if ($resultado->num_rows > 0) {
-    $row = $resultado->fetch_assoc();
+$favoritos = [];
 
-    echo json_encode([
-        "status" => "success", 
-        "favorites" => [
-            "id_favorito" => $row['id_favoritos'],
-            "fecha_agregado" => $row['fecha_agregado'],
-            "id" => $row['id'],
-            "title" => $row['title'],
-            "synopsis" => $row['synopsis'],
-            "id_autor" => $row['id_autor'],
-            "id_genero" => $row['id_genero'],
-            "id_formato" => $row['id_formato'],
-            "fecha_publicacion" => $row['fecha_publicacion']
-        ]
-    ]);
-    
+if ($resultado) {
+    while($row = $resultado->fetch_assoc()) {
+        $favoritos[] = $row; // Añade cada favorito al array
+    }
 } else {
-    echo json_encode(["status" => "error", "message" => "Usuario no encontrado"]);
+    echo json_encode(["status" => "error", "message" => "Favoritos no encontrado"]);
 }
 
+echo json_encode([
+    "status" => "success", 
+    "favorites" => $favoritos // Devuelve el array completo
+]);
 $conn->close();
 ?>

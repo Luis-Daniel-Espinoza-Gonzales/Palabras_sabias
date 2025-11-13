@@ -15,9 +15,21 @@ import com.example.palabras_sabias.prototipo.viewmodel.FavoritosViewModel
 
 class FavoritosFragment : Fragment() {
 
-    // 1. Obtener una instancia del ViewModel
     private val viewModel: FavoritosViewModel by viewModels()
     private lateinit var favoritosAdapter: FavoritosAdapter
+
+    // --- Factory Method para crear instancias de este fragmento ---
+    companion object {
+        private const val ARG_USER_ID = "user_id"
+
+        fun newInstance(userId: Int): FavoritosFragment {
+            val fragment = FavoritosFragment()
+            val args = Bundle()
+            args.putInt(ARG_USER_ID, userId)
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,15 +38,12 @@ class FavoritosFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_favoritos, container, false)
 
-        // 2. Configurar el RecyclerView
         val recyclerView = view.findViewById<RecyclerView>(R.id.favoritos_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
         favoritosAdapter = FavoritosAdapter(emptyList())
         recyclerView.adapter = favoritosAdapter
 
-        // 3. Observar el LiveData del ViewModel
         viewModel.favoritos.observe(viewLifecycleOwner) { favoritosList ->
-            // 4. Actualizar el Adapter con los nuevos datos
             favoritosAdapter.updateData(favoritosList)
         }
 
@@ -49,9 +58,12 @@ class FavoritosFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // 5. Pedir los datos al ViewModel
-        // Aquí necesitaríamos el ID del usuario. Por ahora, usaré 1 como ejemplo.
-        // En una app real, este ID vendría del usuario que ha iniciado sesión.
-        viewModel.cargar_favoritos(2)
+        
+        // 5. OBTENER EL ID DEL USUARIO DESDE LOS ARGUMENTOS
+        arguments?.getInt(ARG_USER_ID)?.let { userId ->
+            viewModel.cargar_favoritos(userId)
+        } ?: run {
+            Toast.makeText(context, "No se proporcionó el ID de usuario al fragmento", Toast.LENGTH_SHORT).show()
+        }
     }
 }
