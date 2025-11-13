@@ -13,7 +13,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import org.json.JSONObject
 
-class UsuariosRepository (private val context: Context) {
+class UsuariosRepository (private val context: Context)  {
 
     fun cargar_usuarios(
         onSuccess: (List<Usuarios>) -> Unit,
@@ -46,7 +46,7 @@ class UsuariosRepository (private val context: Context) {
         onError: (String) -> Unit
     ) {
         val queue = Volley.newRequestQueue(context)
-        val url = "http://10.199.170.168/palabras_sabias/Servidor_web/verificar_usuario.php"
+        val url = "http://192.168.0.10/palabras_sabias/Servidor_web/verificar_usuario.php"
 
         val stringRequest = object : StringRequest(
             Method.POST, url,

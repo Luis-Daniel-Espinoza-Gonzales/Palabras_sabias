@@ -22,10 +22,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val mensajeError: LiveData<String> = _mensajeError
 
     fun cargarHomeData() {
-        Log.d("HOME_VIEWMODEL", "🔥 cargarHomeData() ejecutado")
+        Log.d("HOME_VIEWMODEL", " cargarHomeData() ejecutado")
         repository.cargarHomeData(
             onSuccess = { autores, obra ->
-                Log.d("HOME_VIEWMODEL", "✅ HTTP OK, autores: $autores  obra: $obra")
+                Log.d("HOME_VIEWMODEL", "HTTP OK, autores: $autores  obra: $obra")
                 _autores.value = autores
                 _obraDestacada.value = obra
             },

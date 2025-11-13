@@ -45,6 +45,11 @@
             android:name=".prototipo.ui.screens.ProfileActivity"
             android:exported="false" />
 
+
+        <activity
+            android:name=".prototipo.ui.screens.EventosActivity"
+            android:exported="false" />
+
     </application>
 
 

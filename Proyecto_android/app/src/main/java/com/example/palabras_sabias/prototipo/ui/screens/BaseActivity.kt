@@ -53,7 +53,8 @@ open class BaseActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_eventos -> {
-                    // FUTURA FUNCIÓN: abrir eventos
+                    val intent = Intent(this, EventosActivity::class.java)
+                    startActivity(intent)
                 }
                 R.id.nav_comunidad -> {
                     // FUTURA FUNCIÓN: abrir comunidad
