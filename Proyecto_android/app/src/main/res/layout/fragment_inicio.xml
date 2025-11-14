@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/whitespace"
     android:gravity="center">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="100dp"
+        android:elevation="20dp"
+        android:layout_gravity="center|top"
+        app:srcCompat="@drawable/hometex" />
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Contenido de la pestaña Inicio" />
+        android:id="@+id/textView3"
+        android:layout_width="252dp"
+        android:layout_height="178dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="90dp"
+        android:paddingTop="80dp"
+        android:elevation="15dp"
+        android:background="@drawable/border"
+        android:text="Bienvenidos a Palabras Sabias una aplicacion donde puedes explorar y compartir diversas historias entre la comunidad."
+        android:textAlignment="center"
+        android:textColor="@color/textcolor" />
 
 </FrameLayout>

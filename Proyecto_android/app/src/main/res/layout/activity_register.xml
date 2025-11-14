@@ -3,39 +3,62 @@
     android:orientation="vertical"
     android:padding="20dp"
     android:gravity="center"
+    android:background="@color/colorone"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/inputUsername"
-        android:hint="Nombre de usuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_width="250dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="15dp"
+        android:layout_height="40dp"
+        android:background="@drawable/elemnta"
+        android:textSize="17sp"
+        android:elevation="20dp"
+        android:hint="Nombre de usuario" />
 
     <EditText
         android:id="@+id/inputEmail"
+        android:layout_width="250dp"
+        android:layout_margin="15dp"
+        android:layout_height="40dp"
+        android:textSize="17sp"
+        android:elevation="20dp"
+        android:background="@drawable/elemnta"
         android:hint="Correo electrónico"
-        android:inputType="textEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/inputPassword"
+        android:layout_width="250dp"
+        android:layout_margin="15dp"
+        android:layout_height="40dp"
+        android:textSize="17sp"
+        android:elevation="20dp"
+        android:background="@drawable/elemnta"
         android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:inputType="textPassword" />
 
-    <EditText
+    <TextView
         android:id="@+id/inputBiography"
-        android:hint="Biografía"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_width="250dp"
+        android:layout_margin="20dp"
+        android:layout_height="100dp"
+        android:gravity="start"
+        android:elevation="20dp"
+        android:background="@drawable/elemnta"
+        android:hint="Biografía" />
 
     <Button
         android:id="@+id/btnRegister"
+        android:textColor="@color/textcolor"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/roundstyle"
+        android:layout_marginTop="20dp"
         android:text="Registrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:elevation="40dp"
+        />
 
 </LinearLayout>
